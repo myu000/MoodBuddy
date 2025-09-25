@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MoodBuddy — Request Custom Mood Boards</title>
+  <meta name="description" content="Curated mood boards for your vibe. Request yours from joyful categories or surprise me. Aesthetic, personal, and easy." />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles2.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <span class="logo">MB</span>
+        <span class="name">MoodBuddy</span>
+      </div>
+      <nav class="links">
+        <a href="#home">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#request">Request</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="container hero-content">
+      <h1 class="gradient-text">Your Mood. My Muse.</h1>
+      <p class="lead">Request a custom mood board that matches your vibe, your vision, your moment.</p>
+      <div class="cta">
+        <a href="#request" class="btn btn-primary">Request Yours</a>
+        <a href="#categories" class="btn btn-ghost">Browse Categories</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section id="categories" class="section">
+    <div class="container">
+      <h2 class="section-title">Mood Board Categories</h2>
+      <div class="cards">
+        <article class="card"><h3>✨ That Girl</h3><img src="https://i.pinimg.com/564x/3f/4e/3f/3f4e3f3e3f4e3f3e.jpg" alt="That Girl Moodboard" /></article>
+        <article class="card"><h3>🌊 Beachcore</h3><img src="https://i.pinimg.com/564x/1a/2b/3c/1a2b3c4d.jpg" alt="Beachcore Moodboard" /></article>
+        <article class="card"><h3>🍋 Yellow Joy</h3><img src="https://i.pinimg.com/564x/2d/3e/4f/2d3e4f5g.jpg" alt="Yellow Joy Moodboard" /></article>
+        <article class="card"><h3>📚 Dark Academia</h3><img src="https://i.pinimg.com/564x/4a/5b/6c/4a5b6c7d.jpg" alt="Dark Academia Moodboard" /></article>
+        <article class="card"><h3>🧘 Healing & Calm</h3><img src="https://i.pinimg.com/564x/5e/6f/7g/5e6f7g8h.jpg" alt="Healing Moodboard" /></article>
+        <article class="card"><h3>🎶 Music Vibes</h3><img src="https://i.pinimg.com/564x/6g/7h/8i/6g7h8i9j.jpg" alt="Music Moodboard" /></article>
+        <article class="card"><h3>💼 Branding & Business</h3><img src="https://i.pinimg.com/564x/7i/8j/9k/7i8j9k0l.jpg" alt="Business Moodboard" /></article>
+        <article class="card"><h3>🧠 Custom Concept</h3><img src="https://i.pinimg.com/564x/8j/9k/0l/8j9k0l1m.jpg" alt="Custom Moodboard" /></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Request Form -->
+  <section id="request" class="section alt">
+    <div class="container narrow">
+      <h2 class="section-title">Request a Mood Board</h2>
+      <form id="moodForm" action="https://formspree.io/f/xanpnjol" method="POST" class="form chat-style" novalidate>
+        <div class="chat-bubble">👋 Hi! Let’s create your mood board.</div>
+        <div class="form-row">
+          <label for="name">Your name or alias</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="chat-bubble">🎨 What vibe are you going for?</div>
+        <div class="form-row">
+          <label for="category">Mood board category</label>
+          <select id="category" name="category" required>
+            <option value="">Select</option>
+            <option>That Girl</option>
+            <option>Beachcore</option>
+            <option>Yellow Joy</option>
+            <option>Dark Academia</option>
+            <option>Healing & Calm</option>
+            <option>Music Vibes</option>
+            <option>Branding & Business</option>
+            <option>Custom Concept</option>
+          </select>
+        </div>
+        <div class="chat-bubble">🖼️ Any specific colors, quotes, or images?</div>
+        <div class="form-row">
+          <label for="details">Details</label>
+          <textarea id="details" name="details" rows="5" required></textarea>
+        </div>
+        <div class="chat-bubble">📦 Preferred format?</div>
+        <div class="form-row">
+          <select id="format" name="format" required>
+            <option value="">Choose one</option>
+            <option>PDF</option>
+            <option>Canva link</option>
+            <option>PNG collage</option>
+          </select>
+        </div>
+        <div class="chat-bubble">⏰ When do you need it?</div>
+        <div class="form-row">
+          <input type="text" id="timeline" name="timeline" placeholder="e.g., 3 days, by Friday" />
+        </div>
+        <div class="chat-bubble">📧 Where should I send it?</div>
+        <div class="form-row">
+          <input type="email" id="email" name="email" required />
+        </div>
+        <input type="hidden" name="_subject" value="New MoodBuddy Request" />
+        <button type="submit" class="btn btn-primary full">✨ Send My Vibe</button>
+        <p id="formStatus" class="form-status"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <div class="container narrow">
+      <h2 class="section-title">Contact</h2>
+      <p>Have questions or want to collaborate? Email me directly:</p>
+      <p><a class="link-strong" href="mailto:manasvisingh014@gmail.com">manasvisingh014@gmail.com</a></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> MoodBuddy — Curated by YourHelpingFriend</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script2.js" defer></script>
+</body>
+</html>

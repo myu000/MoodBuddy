@@ -1,34 +1,19 @@
 // ---------- Dynamic Year ----------
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// ---------- Formspree Submit ----------
-const form = document.getElementById('moodForm');
-const statusEl = document.getElementById('formStatus');
-
-if (form) {
-  form.addEventListener('submit', async (e) => {
+// ---------- Smooth Scroll for Nav ----------
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', e => {
     e.preventDefault();
-    statusEl.textContent = 'Submitting your vibe...';
-    const data = new FormData(form);
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: data
-      });
-      if (res.ok) {
-        statusEl.textContent = '✨ Thanks! Your mood board request has been sent. I’ll reply by email.';
-        form.reset();
-      } else {
-        statusEl.textContent = '⚠️ Something went wrong. Please try again.';
-      }
-    } catch (err) {
-      statusEl.textContent = '🚫 Network error. Please check your connection.';
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
     }
   });
-}
+});
 
-// ---------- Scroll Reveal ----------
+// ---------- Scroll Reveal (Cascading Slides) ----------
+const revealElements = document.querySelectorAll('.slide-in');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -38,21 +23,53 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15 });
 
-document.querySelectorAll('.card, .form, .chat-bubble, .section-title').forEach(el => observer.observe(el));
+revealElements.forEach(el => observer.observe(el));
 
-// ---------- Parallax Hero ----------
-const hero = document.querySelector('.hero');
-if (hero) {
-  window.addEventListener('scroll', () => {
-    const offset = window.scrollY * 0.3;
-    hero.style.backgroundPosition = `center ${offset}px`;
-  });
+// ---------- Typing Effect for First Chat Bubble ----------
+function typeEffect(element, speed = 50) {
+  const text = element.textContent;
+  element.textContent = '';
+  let i = 0;
+  const timer = setInterval(() => {
+    if (i < text.length) {
+      element.textContent += text.charAt(i);
+      i++;
+    } else {
+      clearInterval(timer);
+    }
+  }, speed);
 }
 
-// ---------- Surprise Mode (Optional) ----------
-const surpriseBtn = document.querySelector('.btn-surprise');
-if (surpriseBtn) {
-  surpriseBtn.addEventListener('click', () => {
-    alert("🎁 Surprise! You'll receive a random mood board based on your vibe.");
+window.addEventListener('load', () => {
+  const firstBubble = document.querySelector('.chat-bubble');
+  if (firstBubble) {
+    typeEffect(firstBubble, 40);
+  }
+});
+
+// ---------- Formspree Submit ----------
+const form = document.getElementById('moodForm');
+const statusEl = document.getElementById('formStatus');
+
+if (form) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    statusEl.textContent = '✨ Sending your vibe...';
+    const data = new FormData(form);
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: data
+      });
+      if (res.ok) {
+        statusEl.textContent = '🌸 Thanks! Your mood board request is on its way.';
+        form.reset();
+      } else {
+        statusEl.textContent = '⚠️ Oops, something went wrong. Try again.';
+      }
+    } catch (err) {
+      statusEl.textContent = '🚫 Network error. Please check your connection.';
+    }
   });
 }
